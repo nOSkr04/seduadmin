@@ -7,8 +7,6 @@ import UserProfile from "../pages/Authentication/user-profile"
 // Authentication related pages
 import Login from "../pages/Authentication/Login"
 import Logout from "../pages/Authentication/Logout"
-import Register from "../pages/Authentication/Register"
-import ForgetPwd from "../pages/Authentication/ForgetPassword"
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
@@ -37,8 +35,6 @@ const authProtectedRoutes = [
 const publicRoutes = [
   { path: "/login", component: <Login /> },
   { path: "/logout", component: <Logout /> },
-  { path: "/forgot-password", component: <ForgetPwd /> },
-  { path: "/register", component: <Register /> },
 ]
 
 export { authProtectedRoutes, publicRoutes }

@@ -9,14 +9,7 @@ import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu"
 import logo from "../../assets/images/logo.svg"
 import logoLightSvg from "../../assets/images/logo-light.svg"
 
-// Redux Store
-import {
-  showRightSidebarAction,
-  toggleLeftmenu,
-  changeSidebarType,
-} from "../../store/actions"
-
-const Header = props => {
+const Header = () => {
   function toggleFullscreen() {
     if (
       !document.fullscreenElement &&
@@ -105,24 +98,4 @@ const Header = props => {
   )
 }
 
-Header.propTypes = {
-  changeSidebarType: PropTypes.func,
-  leftMenu: PropTypes.any,
-  leftSideBarType: PropTypes.any,
-  showRightSidebar: PropTypes.any,
-  showRightSidebarAction: PropTypes.func,
-  t: PropTypes.any,
-  toggleLeftmenu: PropTypes.func,
-}
-
-const mapStatetoProps = state => {
-  const { layoutType, showRightSidebar, leftMenu, leftSideBarType } =
-    state.Layout
-  return { layoutType, showRightSidebar, leftMenu, leftSideBarType }
-}
-
-export default connect(mapStatetoProps, {
-  showRightSidebarAction,
-  toggleLeftmenu,
-  changeSidebarType,
-})(Header)
+export default Header

@@ -41,10 +41,3 @@ export const apiError = error => {
     payload: error,
   }
 }
-
-export const socialLogin = (type, history) => {
-  return {
-    type: SOCIAL_LOGIN,
-    payload: { type, history },
-  };
-};

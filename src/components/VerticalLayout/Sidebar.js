@@ -1,7 +1,4 @@
-import PropTypes from "prop-types"
 import React from "react"
-import { connect } from "react-redux"
-import withRouter from "components/Common/withRouter"
 
 import SidebarContent from "./SidebarContent"
 
@@ -12,10 +9,10 @@ import logoLightPng from "../../assets/images/logo-light.png"
 import logoLightSvg from "../../assets/images/logo-light.svg"
 import logoDark from "../../assets/images/logo-dark.png"
 
-const Sidebar = props => {
+const Sidebar = () => {
   return (
     <React.Fragment>
-      <div className="vertical-menu">
+      <div className="vertical-menu bg-red">
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
@@ -36,7 +33,7 @@ const Sidebar = props => {
           </Link>
         </div>
         <div data-simplebar className="h-100">
-          {props.type !== "condensed" ? <SidebarContent /> : <SidebarContent />}
+          <SidebarContent />
         </div>
         <div className="sidebar-background"></div>
       </div>
@@ -44,13 +41,4 @@ const Sidebar = props => {
   )
 }
 
-Sidebar.propTypes = {
-  type: PropTypes.string,
-}
-
-const mapStatetoProps = state => {
-  return {
-    layout: state.Layout,
-  }
-}
-export default connect(mapStatetoProps, {})(withRouter(Sidebar))
+export default Sidebar

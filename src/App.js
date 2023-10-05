@@ -1,89 +1,27 @@
-import PropTypes from 'prop-types';
-import React from "react";
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { Routes, Route } from "react-router-dom";
-import { layoutTypes } from "./constants/layout";
+import PropTypes from "prop-types"
+import React from "react"
+import { Routes, Route } from "react-router-dom"
 // Import Routes all
-import { authProtectedRoutes, publicRoutes } from "./routes";
+import { authProtectedRoutes, publicRoutes } from "./routes"
 
 // Import all middleware
-import Authmiddleware from "./routes/route";
-
-// layouts Format
-import VerticalLayout from "./components/VerticalLayout/";
-import HorizontalLayout from "./components/HorizontalLayout/";
-import NonAuthLayout from "./components/NonAuthLayout";
+import Authmiddleware from "./routes/route"
 
 // Import scss
-import "./assets/scss/theme.scss";
-
-// Import Firebase Configuration file
-// import { initFirebaseBackend } from "./helpers/firebase_helper";
-
-import fakeBackend from "./helpers/AuthType/fakeBackend";
-
-// Activating fake backend
-fakeBackend();
-
-// const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_APIKEY,
-//   authDomain: process.env.REACT_APP_AUTHDOMAIN,
-//   databaseURL: process.env.REACT_APP_DATABASEURL,
-//   projectId: process.env.REACT_APP_PROJECTID,
-//   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-//   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-//   appId: process.env.REACT_APP_APPID,
-//   measurementId: process.env.REACT_APP_MEASUREMENTID,
-// };
-
-// init firebase backend
-// initFirebaseBackend(firebaseConfig);
-
-
-const getLayout = (layoutType) => {
-  let Layout = VerticalLayout;
-  switch (layoutType) {
-    case layoutTypes.VERTICAL:
-      Layout = VerticalLayout;
-      break;
-    case layoutTypes.HORIZONTAL:
-      Layout = HorizontalLayout;
-      break;
-    default:
-      break;
-  }
-  return Layout;
-};
+import "./assets/scss/theme.scss"
+import Sidebar from "components/VerticalLayout/Sidebar"
+import Footer from "components/VerticalLayout/Footer"
+import Header from "components/VerticalLayout/Header"
 
 const App = () => {
-
-
-  const selectLayoutState = (state) => state.Layout;
-  const LayoutProperties = createSelector(
-    selectLayoutState,
-      (layout) => ({
-        layoutType: layout.layoutType,
-      })
-  );
-
-    const {
-      layoutType
-  } = useSelector(LayoutProperties);
-
-  const Layout = getLayout(layoutType);
-
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   return (
     <React.Fragment>
       <Routes>
         {publicRoutes.map((route, idx) => (
           <Route
             path={route.path}
-            element={
-              <NonAuthLayout>
-                {route.component}
-              </NonAuthLayout>
-            }
+            element={<React.Fragment>{route.component}</React.Fragment>}
             key={idx}
             exact={true}
           />
@@ -94,19 +32,27 @@ const App = () => {
             path={route.path}
             element={
               <Authmiddleware>
-                <Layout>{route.component}</Layout>
-              </Authmiddleware>}
+                <React.Fragment>
+                  <div id="layout-wrapper">
+                    <Header />
+                    <Sidebar type={"default"} isMobile={isMobile} />
+                    <div className="main-content">{route.component}</div>
+                    <Footer />
+                  </div>
+                </React.Fragment>
+              </Authmiddleware>
+            }
             key={idx}
             exact={true}
           />
         ))}
       </Routes>
     </React.Fragment>
-  );
-};
+  )
+}
 
 App.propTypes = {
-  layout: PropTypes.any
-};
+  layout: PropTypes.any,
+}
 
-export default App;
+export default App
