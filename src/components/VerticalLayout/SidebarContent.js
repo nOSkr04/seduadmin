@@ -159,32 +159,14 @@ const SidebarContent = props => {
             <li>
               <Link to="/#" className="has-arrow">
                 <i className="bx bx-store"></i>
-                <span>Ecommerce</span>
+                <span>Нийтлэл</span>
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="#">Products</Link>
+                  <Link to="/article">Нийтлэлүүд</Link>
                 </li>
                 <li>
-                  <Link to="#">Product Detail</Link>
-                </li>
-                <li>
-                  <Link to="#">Orders</Link>
-                </li>
-                <li>
-                  <Link to="#">Customers</Link>
-                </li>
-                <li>
-                  <Link to="#">Cart</Link>
-                </li>
-                <li>
-                  <Link to="#">Checkout</Link>
-                </li>
-                <li>
-                  <Link to="#">Shops</Link>
-                </li>
-                <li>
-                  <Link to="#">Add Product</Link>
+                  <Link to="/article-add">Нийтлэл нэмэх</Link>
                 </li>
               </ul>
             </li>
