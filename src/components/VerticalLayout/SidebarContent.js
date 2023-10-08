@@ -174,29 +174,11 @@ const SidebarContent = props => {
             <li>
               <Link to="/#" className="has-arrow ">
                 <i className="bx bx-bitcoin"></i>
-                <span>Crypto</span>
+                <span>Хэрэглэгч</span>
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="#">Wallet</Link>
-                </li>
-                <li>
-                  <Link to="#">Buy/Sell</Link>
-                </li>
-                <li>
-                  <Link to="#">Exchange</Link>
-                </li>
-                <li>
-                  <Link to="#">Lending</Link>
-                </li>
-                <li>
-                  <Link to="#">Orders</Link>
-                </li>
-                <li>
-                  <Link to="#">KYC Application</Link>
-                </li>
-                <li>
-                  <Link to="#">ICO Landing</Link>
+                  <Link to="/user">Хэрэглэгчид</Link>
                 </li>
               </ul>
             </li>

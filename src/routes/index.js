@@ -13,15 +13,17 @@ import Dashboard from "../pages/Dashboard/index"
 
 // Article
 import Artcile from "../pages/Article/index"
-import AddArticle from "../pages/Article/add-article"
-
+import CreateArticle from "pages/Article/create-article"
+import Users from "../pages/Users/index"
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   // article
   { path: "/article", component: <Artcile /> },
-  { path: "/article-add", component: <AddArticle /> },
+  { path: "/article-add", component: <CreateArticle /> },
   // //profile
   { path: "/profile", component: <UserProfile /> },
+  // users
+  { path: "/user", component: <Users /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

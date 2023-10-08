@@ -4,10 +4,12 @@ import { Container } from "reactstrap"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
+import useSWR from "swr"
+import { AuthApi } from "api"
 
 const Dashboard = props => {
   //meta title
-  document.title = "Dashboard | Skote - React Admin & Dashboard Template"
+  document.title = "Дашбоард"
 
   return (
     <React.Fragment>

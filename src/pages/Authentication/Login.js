@@ -1,6 +1,5 @@
-import PropTypes from "prop-types"
 import React from "react"
-
+import PropTypes from "prop-types"
 import {
   Row,
   Col,
@@ -17,15 +16,14 @@ import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import withRouter from "components/Common/withRouter"
 
-// Formik validation
-import { useFormik } from "formik"
-
 // actions
 import { loginUser } from "../../store/actions"
 
 // import images
 import profile from "assets/images/profile-img.png"
 import logo from "assets/images/logo.svg"
+import { useForm } from "react-hook-form"
+import LoginForm from "components/auth/login-form"
 
 const Login = props => {
   //meta title
@@ -33,11 +31,19 @@ const Login = props => {
 
   const dispatch = useDispatch()
 
-  const validation = useFormik({
-    onSubmit: values => {
-      dispatch(loginUser(values, props.router.navigate))
-    },
-  })
+  // const validation = useFormik({
+  //   onSubmit: values => {
+  //     dispatch(loginUser(values, props.router.navigate))
+  //   },
+  // })
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = data => dispatch(loginUser(data, props.router.navigate))
 
   return (
     <React.Fragment>
@@ -75,40 +81,11 @@ const Login = props => {
                     </Link>
                   </div>
                   <div className="p-2">
-                    <Form
-                      className="form-horizontal"
-                      onSubmit={e => {
-                        e.preventDefault()
-                        validation.handleSubmit()
-                        return false
-                      }}
-                    >
-                      <div className="mb-3">
-                        <Label className="form-label">Нэр</Label>
-                        <Input
-                          name="email"
-                          className="form-control"
-                          placeholder="Нэрээ оруулна уу"
-                        />
-                      </div>
-
-                      <div className="mb-3">
-                        <Label className="form-label">Нууц үг</Label>
-                        <Input
-                          name="password"
-                          type="password"
-                          placeholder="Нууц үгээ оруулна уу"
-                        />
-                      </div>
-                      <div className="mt-3 d-grid">
-                        <button
-                          className="btn btn-primary btn-block"
-                          type="submit"
-                        >
-                          Нэвтрэх
-                        </button>
-                      </div>
-                    </Form>
+                    <LoginForm
+                      register={register}
+                      onSubmit={onSubmit}
+                      handleSubmit={handleSubmit}
+                    />
                   </div>
                 </CardBody>
               </Card>
