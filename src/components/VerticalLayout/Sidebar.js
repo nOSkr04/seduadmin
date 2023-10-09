@@ -4,10 +4,10 @@ import SidebarContent from "./SidebarContent"
 
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/images/logo.svg"
-import logoLightPng from "../../assets/images/logo-light.png"
-import logoLightSvg from "../../assets/images/logo-light.svg"
-import logoDark from "../../assets/images/logo-dark.png"
+import logo from "../../assets/img/logo.png"
+import logoLightPng from "../../assets/img/logo.png"
+import logoLightSvg from "../../assets/img/logo.png"
+import logoDark from "../../assets/img/logo.png"
 
 const Sidebar = () => {
   return (

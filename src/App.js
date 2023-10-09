@@ -12,7 +12,6 @@ import "./assets/scss/theme.scss"
 import Sidebar from "components/VerticalLayout/Sidebar"
 import Footer from "components/VerticalLayout/Footer"
 import Header from "components/VerticalLayout/Header"
-import { ToastContainer } from "react-toastify"
 
 const App = () => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)

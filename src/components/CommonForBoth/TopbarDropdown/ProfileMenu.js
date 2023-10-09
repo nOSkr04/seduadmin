@@ -7,8 +7,6 @@ import {
   DropdownItem,
 } from "reactstrap"
 
-// Redux
-import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import withRouter from "components/Common/withRouter"
 
@@ -49,7 +47,7 @@ const ProfileMenu = props => {
         <DropdownMenu className="dropdown-menu-end">
           <Link to="/logout" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
-            <span>Logout</span>
+            <span>Гарах</span>
           </Link>
         </DropdownMenu>
       </Dropdown>
@@ -57,14 +55,4 @@ const ProfileMenu = props => {
   )
 }
 
-ProfileMenu.propTypes = {
-  success: PropTypes.any,
-  t: PropTypes.any,
-}
-
-const mapStatetoProps = state => {
-  const { error, success } = state.Profile
-  return { error, success }
-}
-
-export default withRouter(connect(mapStatetoProps, {})(ProfileMenu))
+export default withRouter(ProfileMenu)
