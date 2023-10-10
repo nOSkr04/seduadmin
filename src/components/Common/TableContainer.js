@@ -32,7 +32,7 @@ function GlobalFilter({
           <div className="position-relative">
             <label htmlFor="search-bar-0" className="search-label">
               <span id="search-bar-0-label" className="sr-only">
-                Search this table
+                Хэрэглэгч хайх
               </span>
               <input
                 onChange={e => {
@@ -117,9 +117,9 @@ const TableContainer = ({
     usePagination
   )
 
-  const generateSortingIndicator = column => {
-    return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""
-  }
+  // const generateSortingIndicator = column => {
+  //   return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""
+  // }
 
   const onChangeInSelect = event => {
     setPageSize(Number(event.target.value))
@@ -177,7 +177,7 @@ const TableContainer = ({
                 onClick={handleUserClick}
               >
                 <i className="mdi mdi-plus-circle-outline me-1" />
-                Create New User
+                Шинэ хэрэглэгч үүсгэх
               </Button>
             </div>
           </Col>

@@ -1,4 +1,4 @@
-import { del, get, post, put, putFile } from "helpers/api_helper"
+import { del, get, post, put } from "helpers/api_helper"
 
 export const getArticles = async ({ page, limit }) => {
   const res = await get(`/articles?page=${page}&limit=${limit}&sort=-createdAt`)

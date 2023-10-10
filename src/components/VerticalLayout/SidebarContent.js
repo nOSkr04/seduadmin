@@ -10,7 +10,7 @@ import MetisMenu from "metismenujs"
 import withRouter from "components/Common/withRouter"
 import { Link } from "react-router-dom"
 
-const SidebarContent = props => {
+const SidebarContent = () => {
   const ref = useRef()
   const activateParentDropdown = useCallback(item => {
     item.classList.add("active")
@@ -186,30 +186,14 @@ const SidebarContent = props => {
             <li>
               <Link to="/#" className="has-arrow ">
                 <i className="bx bx-envelope"></i>
-                <span>Email</span>
+                <span>Зарууд</span>
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="#">Inbox</Link>
+                  <Link to="/ads">Зарууд жагсаалт</Link>
                 </li>
                 <li>
-                  <Link to="#">Read Email </Link>
-                </li>
-                <li>
-                  <Link to="/#" className="has-arrow ">
-                    <span key="#">Templates</span>
-                  </Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="#">Basic Action</Link>
-                    </li>
-                    <li>
-                      <Link to="#">Alert Email </Link>
-                    </li>
-                    <li>
-                      <Link to="#">Billing Email </Link>
-                    </li>
-                  </ul>
+                  <Link to="#">Зар нэмэх </Link>
                 </li>
               </ul>
             </li>

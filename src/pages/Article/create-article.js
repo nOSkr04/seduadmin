@@ -74,7 +74,7 @@ const CreateArticle = () => {
         )
         xhr.send(formData)
         xhr.onload = function (e) {
-          console.log("Request Status", xhr.status)
+          console.log("Request Status", xhr.status, e)
         }
         xhr.upload.onprogress = function (e) {
           if (e.lengthComputable) {

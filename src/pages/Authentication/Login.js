@@ -1,15 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import {
-  Row,
-  Col,
-  CardBody,
-  Card,
-  Container,
-  Form,
-  Input,
-  Label,
-} from "reactstrap"
+import { Row, Col, CardBody, Card, Container } from "reactstrap"
 
 //redux
 import { useDispatch } from "react-redux"
@@ -40,7 +31,7 @@ const Login = props => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm()
 
   const onSubmit = data => dispatch(loginUser(data, props.router.navigate))

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useMemo } from "react"
+import React, { useState, useMemo } from "react"
 import { Link } from "react-router-dom"
 import withRouter from "components/Common/withRouter"
 import TableContainer from "components/Common/TableContainer"
@@ -12,13 +12,10 @@ import {
   ModalHeader,
   ModalBody,
   Label,
-  FormFeedback,
   UncontrolledTooltip,
-  Input,
-  Form,
 } from "reactstrap"
 
-import { Email, Tags, Projects } from "./contactlistCol"
+import { Deadline } from "./contactlistCol"
 
 //Import Breadcrumb
 import Breadcrumbs from "components/Common/Breadcrumb"
@@ -28,19 +25,27 @@ import Spinners from "components/Common/Spinner"
 import { ToastContainer } from "react-toastify"
 import useSWR from "swr"
 import { UsersApi } from "api"
+import { useForm } from "react-hook-form"
 
 const Users = () => {
   //meta title
   document.title = "Хэрэглэгчид"
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+    reset,
+    // control,
+  } = useForm({
+    reValidateMode: "onChange",
+  })
   const [modal, setModal] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
-  const [pageIndex, setPageIndex] = useState(2)
+  const [pageIndex] = useState(2)
   const { data, isLoading } = useSWR(`swr.user.${pageIndex}`, async () => {
     const res = await UsersApi.getUsers({ page: pageIndex, limit: 10 })
     return res
   })
-
-  console.log(data)
 
   const columns = useMemo(
     () => [
@@ -51,26 +56,16 @@ const Users = () => {
         filterable: true,
         accessor: cellProps => (
           <>
-            {!cellProps.img ? (
-              <div className="avatar-xs">
-                <span className="avatar-title rounded-circle">
-                  {cellProps.name.charAt(0)}
-                </span>
-              </div>
-            ) : (
-              <div>
-                <img
-                  className="rounded-circle avatar-xs"
-                  src={cellProps.img}
-                  alt=""
-                />
-              </div>
-            )}
+            <div className="avatar-xs">
+              <span className="avatar-title rounded-circle">
+                {cellProps.name.charAt(0)}
+              </span>
+            </div>
           </>
         ),
       },
       {
-        Header: "Name",
+        Header: "Нэр",
         accessor: "name",
         filterable: true,
         Cell: cellProps => {
@@ -81,44 +76,36 @@ const Users = () => {
                   {cellProps.row.original.name}
                 </Link>
               </h5>
-              <p className="text-muted mb-0">
-                {cellProps.row.original.designation}
-              </p>
             </>
           )
         },
       },
       {
-        Header: "Email",
-        accessor: "email",
+        Header: "Дуусах/Хугацаа",
+        accessor: "deadline",
         filterable: true,
         Cell: cellProps => {
-          return <Email {...cellProps} />
+          return <Deadline {...cellProps} />
         },
       },
       {
-        Header: "Tags",
-        accessor: "tags",
+        Header: "Үүсгэсэн/Хугацаа",
+        accessor: "createdAt",
         filterable: true,
         Cell: cellProps => {
-          return <Tags {...cellProps} />
+          return <Deadline {...cellProps} />
         },
       },
       {
-        Header: "Projects",
-        accessor: "projects",
+        Header: "СТ/Хугацаа",
+        accessor: "lastPayment",
         filterable: true,
         Cell: cellProps => {
-          return (
-            <>
-              {" "}
-              <Projects {...cellProps} />{" "}
-            </>
-          )
+          return <Deadline {...cellProps} />
         },
       },
       {
-        Header: "Action",
+        Header: "Үйлдэл",
         Cell: cellProps => {
           return (
             <div className="d-flex gap-3">
@@ -132,7 +119,7 @@ const Users = () => {
               >
                 <i className="mdi mdi-pencil font-size-18" id="edittooltip" />
                 <UncontrolledTooltip placement="top" target="edittooltip">
-                  Edit
+                  Өөрчлөх
                 </UncontrolledTooltip>
               </Link>
               <Link
@@ -145,7 +132,7 @@ const Users = () => {
               >
                 <i className="mdi mdi-delete font-size-18" id="deletetooltip" />
                 <UncontrolledTooltip placement="top" target="deletetooltip">
-                  Delete
+                  Устгах
                 </UncontrolledTooltip>
               </Link>
             </div>
@@ -161,6 +148,7 @@ const Users = () => {
   }
 
   const handleUserClick = arg => {
+    reset(arg)
     setIsEdit(true)
 
     toggle()
@@ -171,6 +159,7 @@ const Users = () => {
 
   const onClickDelete = users => {
     // setContact(users)
+    console.log(users)
     setDeleteModal(true)
   }
 
@@ -185,6 +174,11 @@ const Users = () => {
   const handleUserClicks = () => {
     // setUserList("")
     setIsEdit(false)
+    toggle()
+  }
+
+  const onSubmit = async data => {
+    console.log("first", data)
     toggle()
   }
 
@@ -228,42 +222,42 @@ const Users = () => {
 
             <Modal isOpen={modal} toggle={toggle}>
               <ModalHeader toggle={toggle} tag="h4">
-                {!!isEdit ? "Edit User" : "Add User"}
+                {!!isEdit ? "Хэрэглэгч засах" : "Шинэ хэрэглэгч"}
               </ModalHeader>
               <ModalBody>
-                <Form
-                  onSubmit={e => {
-                    e.preventDefault()
-                    validation.handleSubmit()
-                    return false
-                  }}
-                >
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <Row>
                     <Col xs={12}>
                       <div className="mb-3">
-                        <Label className="form-label">Name</Label>
-                        <Input
+                        <Label className="form-label">Нэр</Label>
+                        <input
                           name="name"
                           type="text"
-                          placeholder="Insert Name"
+                          placeholder="Нэрээ оруулна уу"
+                          {...register("name")}
+                          className="form-control"
                         />
                       </div>
+                      {!isEdit && (
+                        <div className="mb-3">
+                          <Label className="form-label">Нууц үг</Label>
+                          <input
+                            name="password"
+                            type="password"
+                            placeholder="Нууц үг оруулна уу"
+                            {...register("password")}
+                            className="form-control"
+                          />
+                        </div>
+                      )}
                       <div className="mb-3">
-                        <Label className="form-label">Designation</Label>
-                        <Input
-                          name="designation"
-                          label="Designation"
-                          placeholder="Insert Designation"
+                        <Label className="form-label">Хэрэглэгчийн эрх</Label>
+                        <input
+                          name="deadline"
+                          placeholder="Хэрэглэгчийн эрх"
                           type="text"
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <Label className="form-label">Email</Label>
-                        <Input
-                          name="email"
-                          label="Email"
-                          type="email"
-                          placeholder="Insert Email"
+                          {...register("deadline")}
+                          className="form-control"
                         />
                       </div>
                     </Col>
@@ -275,12 +269,12 @@ const Users = () => {
                           type="submit"
                           className="btn btn-success save-user"
                         >
-                          Save
+                          Хадгалах
                         </button>
                       </div>
                     </Col>
                   </Row>
-                </Form>
+                </form>
               </ModalBody>
             </Modal>
           </Row>

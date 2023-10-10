@@ -23,16 +23,15 @@ import Breadcrumbs from "components/Common/Breadcrumb"
 import Spinners from "components/Common/Spinner"
 import Paginations from "components/Common/Pagination"
 import useSWR from "swr"
-import { ArticleApi } from "api"
+import { AdsApi } from "api"
 import DeleteModal from "components/Common/DeleteModal"
 import moment from "moment"
-import { Controller, useForm } from "react-hook-form"
-import WYSIWYGEditor from "components/article/WYSIWYGEditor"
+import { useForm } from "react-hook-form"
 import Dropzone from "react-dropzone"
 import authHeader from "helpers/jwt-token-access/auth-token-header"
 
-const Article = () => {
-  document.title = "Нийтлэлүүд"
+const Banner = () => {
+  document.title = "Зарууд"
   const [pageIndex, setPageIndex] = useState(1)
   const [deleteModal, setDeleteModal] = useState(false)
   const [modal, setModal] = useState(false)
@@ -45,7 +44,6 @@ const Article = () => {
     handleSubmit,
     // formState: { errors },
     reset,
-    control,
   } = useForm({
     reValidateMode: "onChange",
   })
@@ -71,17 +69,14 @@ const Article = () => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i]
   }
 
-  const { data, isLoading, mutate } = useSWR(
-    `swr.article.${pageIndex}`,
-    async () => {
-      const res = await ArticleApi.getArticles({ page: pageIndex, limit: 10 })
-      return res
-    }
-  )
+  const { data, isLoading, mutate } = useSWR(`swr.ads`, async () => {
+    const res = await AdsApi.getAds()
+    return res
+  })
 
-  const onClickDelete = async article => {
+  const onClickDelete = async ad => {
     try {
-      await ArticleApi.deleteArticle(article._id)
+      await AdsApi.deleteAds(ad._id)
       setTimeout(() => {
         mutate()
       }, 500)
@@ -128,8 +123,9 @@ const Article = () => {
   }
 
   const onSubmit = async data => {
+    console.log(data)
     try {
-      await ArticleApi.editArticle(data)
+      await AdsApi.editAds(data)
       setTimeout(() => {
         mutate()
       }, 500)
@@ -147,7 +143,7 @@ const Article = () => {
     xhr.open("file", selectedFiles[0])
     xhr.open(
       "PUT",
-      `https://seduback.com/api/v1/articles/${photo._id}/upload-photo`,
+      `https://seduback.com/api/v1/ads/${photo._id}/upload-photo`,
       true
     )
     xhr.setRequestHeader(
@@ -182,7 +178,7 @@ const Article = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Нийтлэлүүд" breadcrumbItem="Нийтлэл жагсаалт" />
+          <Breadcrumbs title="Зарууд" breadcrumbItem="Зар жагсаалт" />
 
           {isLoading ? (
             <Spinners />
@@ -204,12 +200,12 @@ const Article = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.data?.map(article => {
+                        {data.data?.map(ad => {
                           return (
-                            <tr key={article.id}>
+                            <tr key={ad.id}>
                               <td>
                                 <img
-                                  src={`https://seduback.com/upload/${article.photo}`}
+                                  src={`https://seduback.com/upload/${ad.photo}`}
                                   alt=""
                                   className="avatar-sm"
                                 />
@@ -217,16 +213,14 @@ const Article = () => {
                               <td>
                                 <h5 className="text-truncate font-size-14">
                                   <Link
-                                    to={`/projects-overview/${article.id}`}
+                                    to={`/projects-overview/${ad.id}`}
                                     className="text-dark"
                                   >
-                                    {article.name}
+                                    {ad.name}
                                   </Link>
                                 </h5>
                               </td>
-                              <td> {handleValidDate(article.createdAt)}</td>
-                              <td>{article.count}</td>
-
+                              <td> {handleValidDate(ad.createdAt)}</td>
                               <td>
                                 <UncontrolledDropdown>
                                   <DropdownToggle
@@ -240,7 +234,7 @@ const Article = () => {
                                     <DropdownItem
                                       href="#"
                                       onClick={() => {
-                                        handleUserClick(article)
+                                        handleUserClick(ad)
                                       }}
                                     >
                                       <i className="mdi mdi-pencil font-size-16 text-success me-1" />{" "}
@@ -248,14 +242,14 @@ const Article = () => {
                                     </DropdownItem>
                                     <DropdownItem
                                       href="#"
-                                      onClick={() => handlePhotoClick(article)}
+                                      onClick={() => handlePhotoClick(ad)}
                                     >
                                       <i className="mdi mdi-image font-size-16 text-warn me-1" />{" "}
                                       Зураг
                                     </DropdownItem>
                                     <DropdownItem
                                       href="#"
-                                      onClick={() => onClickDelete(article)}
+                                      onClick={() => onClickDelete(ad)}
                                     >
                                       <i className="mdi mdi-trash-can font-size-16 text-danger me-1" />{" "}
                                       Устгах
@@ -289,15 +283,6 @@ const Article = () => {
                         type="text"
                         {...register("name")}
                         className="form-control"
-                      />
-                    </div>
-
-                    <div className="mb-3">
-                      <Label className="form-label">Агуулга</Label>
-                      <Controller
-                        render={({ field }) => <WYSIWYGEditor {...field} />}
-                        name="description"
-                        control={control}
                       />
                     </div>
                   </Col>
@@ -419,4 +404,4 @@ const Article = () => {
   )
 }
 
-export default withRouter(Article)
+export default withRouter(Banner)

@@ -8,7 +8,7 @@ import SimpleBar from "simplebar-react"
 import avatar3 from "../../../assets/images/users/avatar-3.jpg"
 import avatar4 from "../../../assets/images/users/avatar-4.jpg"
 
-const NotificationDropdown = props => {
+const NotificationDropdown = () => {
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false)
 

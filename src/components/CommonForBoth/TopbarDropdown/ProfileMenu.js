@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react"
-import PropTypes from "prop-types"
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap"
+import React, { useState } from "react"
+import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap"
 
 import { Link } from "react-router-dom"
 import withRouter from "components/Common/withRouter"
@@ -15,7 +9,7 @@ import user1 from "../../../assets/img/logo.png"
 import useSWR from "swr"
 import { AuthApi } from "api"
 
-const ProfileMenu = props => {
+const ProfileMenu = () => {
   const [menu, setMenu] = useState(false)
   const { data } = useSWR("swr.user.me", async () => {
     const res = await AuthApi.me()

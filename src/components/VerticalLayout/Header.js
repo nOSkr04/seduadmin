@@ -1,7 +1,5 @@
-import PropTypes from "prop-types"
 import React from "react"
 
-import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 // Import menuDropdown
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu"

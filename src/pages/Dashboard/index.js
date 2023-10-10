@@ -4,10 +4,8 @@ import { Container } from "reactstrap"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
-import useSWR from "swr"
-import { AuthApi } from "api"
 
-const Dashboard = props => {
+const Dashboard = () => {
   //meta title
   document.title = "Дашбоард"
 
@@ -16,7 +14,7 @@ const Dashboard = props => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumb */}
-          <Breadcrumbs title={"Dashboards"} breadcrumbItem={"Dashboard"} />
+          <Breadcrumbs title={"Нүүр"} breadcrumbItem={"Нүүр"} />
         </Container>
       </div>
     </React.Fragment>
