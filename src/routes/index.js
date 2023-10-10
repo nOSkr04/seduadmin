@@ -16,6 +16,7 @@ import Artcile from "../pages/Article/index"
 import CreateArticle from "pages/Article/create-article"
 import Users from "../pages/Users/index"
 import Banner from "pages/Banner"
+import CreateBanner from "pages/Banner/create-ads"
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   // article
@@ -27,6 +28,7 @@ const authProtectedRoutes = [
   { path: "/user", component: <Users /> },
   // banner
   { path: "/ads", component: <Banner /> },
+  { path: "/ads-add", component: <CreateBanner /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

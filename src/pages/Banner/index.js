@@ -25,7 +25,6 @@ import Paginations from "components/Common/Pagination"
 import useSWR from "swr"
 import { AdsApi } from "api"
 import DeleteModal from "components/Common/DeleteModal"
-import moment from "moment"
 import { useForm } from "react-hook-form"
 import Dropzone from "react-dropzone"
 import authHeader from "helpers/jwt-token-access/auth-token-header"
@@ -106,11 +105,6 @@ const Banner = () => {
     }
   }
 
-  const handleValidDate = date => {
-    const date1 = moment(new Date(date)).format("YYYY-MM-DD")
-    return date1
-  }
-
   const handleUserClick = arg => {
     setIsEdit(true)
     reset(arg)
@@ -143,7 +137,7 @@ const Banner = () => {
     xhr.open("file", selectedFiles[0])
     xhr.open(
       "PUT",
-      `https://seduback.com/api/v1/ads/${photo._id}/upload-photo`,
+      `https://seduback.com/api/v1/ads/${photo._id}/photo`,
       true
     )
     xhr.setRequestHeader(
@@ -194,9 +188,7 @@ const Banner = () => {
                             #
                           </th>
                           <th scope="col">Гарчиг</th>
-                          <th scope="col">Нийтэлсэн огноо</th>
-                          <th scope="col">Үзэлт</th>
-                          <th scope="col">Action</th>
+                          <th scope="col">Үйлдэл</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -220,7 +212,6 @@ const Banner = () => {
                                   </Link>
                                 </h5>
                               </td>
-                              <td> {handleValidDate(ad.createdAt)}</td>
                               <td>
                                 <UncontrolledDropdown>
                                   <DropdownToggle

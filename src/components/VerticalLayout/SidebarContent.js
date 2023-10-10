@@ -193,7 +193,7 @@ const SidebarContent = () => {
                   <Link to="/ads">Зарууд жагсаалт</Link>
                 </li>
                 <li>
-                  <Link to="#">Зар нэмэх </Link>
+                  <Link to="/ads-add">Зар нэмэх </Link>
                 </li>
               </ul>
             </li>
@@ -201,7 +201,7 @@ const SidebarContent = () => {
             <li>
               <Link to="/#" className="has-arrow ">
                 <i className="bx bx-receipt"></i>
-                <span>Invoices</span>
+                <span>Хэлэлцүүлэг</span>
               </Link>
               <ul className="sub-menu">
                 <li>

@@ -25,8 +25,8 @@ const Paginations = ({
       <Row className="justify-content-between align-items-center">
         <div className="col-sm">
           <div className="text-muted">
-            Showing <span className="fw-semibold">{perPageData}</span> of{" "}
-            <span className="fw-semibold">{count}</span> entries
+            Харуулах <span className="fw-semibold">{perPageData}</span> аас{" "}
+            <span className="fw-semibold">{count}</span> байна
           </div>
         </div>
         <div className={paginationDiv}>

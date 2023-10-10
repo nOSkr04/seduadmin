@@ -41,7 +41,7 @@ const Users = () => {
   })
   const [modal, setModal] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
-  const [pageIndex] = useState(2)
+  const [pageIndex, setPageIndex] = useState(1)
   const { data, isLoading } = useSWR(`swr.user.${pageIndex}`, async () => {
     const res = await UsersApi.getUsers({ page: pageIndex, limit: 10 })
     return res
@@ -214,6 +214,9 @@ const Users = () => {
                       theadClass="table-light"
                       paginationDiv="col-sm-12 col-md-7"
                       pagination="pagination pagination-rounded justify-content-end mt-4"
+                      paginations={data.pagination}
+                      setPageIndex={setPageIndex}
+                      pageIndex={pageIndex}
                     />
                   </CardBody>
                 </Card>
