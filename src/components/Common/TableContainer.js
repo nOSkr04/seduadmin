@@ -3,56 +3,20 @@ import PropTypes from "prop-types"
 import {
   useTable,
   useGlobalFilter,
-  useAsyncDebounce,
   useSortBy,
   useExpanded,
   usePagination,
 } from "react-table"
-import { Table, Row, Col } from "reactstrap"
+import { Table, Row } from "reactstrap"
 import { Link } from "react-router-dom"
 
 // Define a default UI for filtering
-function GlobalFilter({ globalFilter, setGlobalFilter, paginations }) {
-  const count = paginations.total
-  const [value, setValue] = React.useState(globalFilter)
-  const onChange = useAsyncDebounce(value => {
-    setGlobalFilter(value || undefined)
-  }, 200)
-
-  return (
-    <React.Fragment>
-      <Col md={4}>
-        <div className="search-box me-xxl-2 my-3 my-xxl-0 d-inline-block">
-          <div className="position-relative">
-            <label htmlFor="search-bar-0" className="search-label">
-              <span id="search-bar-0-label" className="sr-only">
-                Хэрэглэгч хайх
-              </span>
-              <input
-                onChange={e => {
-                  setValue(e.target.value)
-                  onChange(e.target.value)
-                }}
-                id="search-bar-0"
-                type="text"
-                className="form-control"
-                placeholder={`${count} хэрэглэгч...`}
-                value={value || ""}
-              />
-            </label>
-            <i className="bx bx-search-alt search-icon"></i>
-          </div>
-        </div>
-      </Col>
-    </React.Fragment>
-  )
-}
 
 const TableContainer = ({
   columns,
   data,
   isGlobalFilter,
-
+  GlobalFilter,
   customPageSize,
   isPagination,
   isShowingPageLength,
@@ -70,7 +34,6 @@ const TableContainer = ({
     headerGroups,
     page,
     prepareRow,
-    state,
     setGlobalFilter,
   } = useTable(
     {
@@ -98,7 +61,6 @@ const TableContainer = ({
       <Row className="mb-2">
         {isGlobalFilter && (
           <GlobalFilter
-            globalFilter={state.globalFilter}
             setGlobalFilter={setGlobalFilter}
             paginations={paginations}
           />
@@ -151,8 +113,9 @@ const TableContainer = ({
             <div className="col-sm">
               <div className="text-muted">
                 Харуулж буй{" "}
-                {/* <span className="fw-semibold">{data.pagination.end}</span> of{" "} */}
-                <span className="fw-semibold">{data.length}</span> entries
+                <span className="fw-semibold">{paginations.total}</span> аас{" "}
+                <span className="fw-semibold">{data.length}</span> харагдаж
+                байна
               </div>
             </div>
           )}

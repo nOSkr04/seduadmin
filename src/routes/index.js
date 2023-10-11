@@ -17,6 +17,9 @@ import CreateArticle from "pages/Article/create-article"
 import Users from "../pages/Users/index"
 import Banner from "pages/Banner"
 import CreateBanner from "pages/Banner/create-ads"
+import PostGrid from "pages/Network/PostGrid/index"
+import PostList from "pages/Network/PostList/index"
+import PostDetails from "pages/Network/PostDetails"
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   // article
@@ -29,6 +32,10 @@ const authProtectedRoutes = [
   // banner
   { path: "/ads", component: <Banner /> },
   { path: "/ads-add", component: <CreateBanner /> },
+  // Network
+  { path: "/network-grid", component: <PostGrid /> },
+  { path: "/network-list", component: <PostList /> },
+  { path: "/post-detail/:id", component: <PostDetails /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

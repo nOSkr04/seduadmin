@@ -205,10 +205,16 @@ const SidebarContent = () => {
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="#">Invoice List</Link>
+                  <Link to="/network-grid">Хэлэлцүүлэг хос</Link>
                 </li>
                 <li>
-                  <Link to="#">Invoice Detail</Link>
+                  <Link to="/network-list">Хэлэлцүүлэг жагсаалт</Link>
+                </li>
+                <li>
+                  <Link to="/post-detail/:id">Хэлэлцүүлэг дэлгэрэнгүй</Link>
+                </li>
+                <li>
+                  <Link to="/network-add">Хэлэлцүүлэг нэмэх</Link>
                 </li>
               </ul>
             </li>

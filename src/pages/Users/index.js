@@ -26,6 +26,7 @@ import { ToastContainer } from "react-toastify"
 import useSWR from "swr"
 import { UsersApi } from "api"
 import { useForm } from "react-hook-form"
+import { useAsyncDebounce } from "react-table"
 
 const Users = () => {
   //meta title
@@ -42,10 +43,46 @@ const Users = () => {
   const [modal, setModal] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
   const [pageIndex, setPageIndex] = useState(1)
+  const [search, setSearch] = useState("")
   const { data, isLoading } = useSWR(`swr.user.${pageIndex}`, async () => {
     const res = await UsersApi.getUsers({ page: pageIndex, limit: 10 })
     return res
   })
+
+  function GlobalFilter({ setGlobalFilter, paginations }) {
+    const count = paginations.total
+    const onChange = useAsyncDebounce(value => {
+      setGlobalFilter(value || undefined)
+    }, 200)
+
+    return (
+      <React.Fragment>
+        <Col md={4}>
+          <div className="search-box me-xxl-2 my-3 my-xxl-0 d-inline-block">
+            <div className="position-relative">
+              <label htmlFor="search-bar-0" className="search-label">
+                <span id="search-bar-0-label" className="sr-only">
+                  Хэрэглэгч хайх
+                </span>
+                <input
+                  onChange={e => {
+                    setSearch(e.target.value)
+                    onChange(e.target.value)
+                  }}
+                  id="search-bar-0"
+                  type="text"
+                  className="form-control"
+                  placeholder={`${count} хэрэглэгч...`}
+                  value={search || ""}
+                />
+              </label>
+              <i className="bx bx-search-alt search-icon"></i>
+            </div>
+          </div>
+        </Col>
+      </React.Fragment>
+    )
+  }
 
   const columns = useMemo(
     () => [
@@ -192,7 +229,10 @@ const Users = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Contacts" breadcrumbItem="User List" />
+          <Breadcrumbs
+            title="Хэрэглэгчид"
+            breadcrumbItem="Хэрэглэгч жагсаалт"
+          />
           <Row>
             {isLoading ? (
               <Spinners />
@@ -217,6 +257,7 @@ const Users = () => {
                       paginations={data.pagination}
                       setPageIndex={setPageIndex}
                       pageIndex={pageIndex}
+                      GlobalFilter={GlobalFilter}
                     />
                   </CardBody>
                 </Card>
