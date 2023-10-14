@@ -243,7 +243,7 @@ const Users = () => {
                     <TableContainer
                       isPagination={true}
                       columns={columns}
-                      data={data.data}
+                      data={data?.data}
                       isGlobalFilter={true}
                       isShowingPageLength={true}
                       isAddUserList={true}
@@ -254,7 +254,7 @@ const Users = () => {
                       theadClass="table-light"
                       paginationDiv="col-sm-12 col-md-7"
                       pagination="pagination pagination-rounded justify-content-end mt-4"
-                      paginations={data.pagination}
+                      paginations={data?.pagination}
                       setPageIndex={setPageIndex}
                       pageIndex={pageIndex}
                       GlobalFilter={GlobalFilter}

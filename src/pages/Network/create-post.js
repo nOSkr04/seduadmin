@@ -13,14 +13,12 @@ import {
 } from "reactstrap"
 
 //Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 import { Controller, useForm } from "react-hook-form"
 import Dropzone from "react-dropzone"
 import { Link } from "react-router-dom"
-import { AdsApi } from "api"
-import authHeader from "helpers/jwt-token-access/auth-token-header"
+import { NetowrkApi } from "api"
 
-const CreateBanner = () => {
+const CreatePost = () => {
   const { control, handleSubmit, reset } = useForm()
 
   //meta title
@@ -56,37 +54,11 @@ const CreateBanner = () => {
       description: data.description,
     }
     try {
-      const res = await AdsApi.createAds(create)
-      if (res) {
-        const formData = new FormData()
-        const xhr = new XMLHttpRequest()
-        formData.append("file", selectedFiles[0])
-        xhr.open("file", selectedFiles[0])
-        xhr.open(
-          "PUT",
-          `https://seduback.com/api/v1/ads/${res.data._id}/photo`,
-          true
-        )
-        xhr.setRequestHeader(
-          "Authorization",
-          `Bearer ${authHeader().Authorization}`
-        )
-        xhr.send(formData)
-        xhr.onload = function (e) {
-          console.log("Request Status", xhr.status, e)
-        }
-        xhr.upload.onprogress = function (e) {
-          if (e.lengthComputable) {
-            const percentComplete = (e.loaded / e.total) * 100
-            console.log(`Upload progress: ${Math.round(percentComplete)}%`)
-          }
-        }
-      }
+      await NetowrkApi.createPost(create)
       reset({
         name: "",
         description: "",
       })
-      setselectedFiles([])
     } catch (err) {
       console.log(err, "err")
     }
@@ -97,18 +69,19 @@ const CreateBanner = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Зар" breadcrumbItem="Зар нэмэх" />
+          {/* <Breadcrumbs title="Tasks" breadcrumbItem="Create Task" /> */}
 
           <Row>
             <Col lg="12">
               <Card>
                 <CardBody>
-                  <CardTitle className="mb-4">Зар нэмэх</CardTitle>
+                  <CardTitle className="mb-4">Сургалт нэмэх</CardTitle>
                   <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="outer-repeater"
                   >
                     <Dropzone
+                      accept={"video/*"}
                       onDrop={acceptedFiles => {
                         handleAcceptedFiles(acceptedFiles)
                       }}
@@ -212,4 +185,4 @@ const CreateBanner = () => {
   )
 }
 
-export default CreateBanner
+export default CreatePost

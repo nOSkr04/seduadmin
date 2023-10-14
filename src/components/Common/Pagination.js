@@ -26,30 +26,34 @@ const Paginations = ({
         <div className="col-sm">
           <div className="text-muted">
             Харуулах <span className="fw-semibold">{perPageData}</span> аас{" "}
-            <span className="fw-semibold">{count}</span> байна
+            <span className="fw-semibold">{count.total}</span> байна
           </div>
         </div>
         <div className={paginationDiv}>
           <ul className={paginationClass}>
-            <li className={`page-item ${currentPage <= 1 ? "disabled" : ""}`}>
-              <Link
-                className="page-link"
-                to="#"
-                onClick={() => handleprevPage()}
-              >
-                <i className="mdi mdi-chevron-left"></i>
+            {count.prevPage && (
+              <li className={`page-item`}>
+                <Link
+                  className="page-link"
+                  to="#"
+                  onClick={() => handleprevPage()}
+                >
+                  <i className="mdi mdi-chevron-left"></i>
+                </Link>
+              </li>
+            )}
+            <li className={"page-item active"}>
+              <Link className="page-link" to="#">
+                {currentPage}
               </Link>
             </li>
-
-            <li
-              className={`page-item ${
-                currentPage > Math.floor(count / 10) ? "disabled" : ""
-              }`}
-            >
-              <Link className="page-link" to="#" onClick={handlenextPage}>
-                <i className="mdi mdi-chevron-right"></i>
-              </Link>
-            </li>
+            {count.nextPage && (
+              <li className={`page-item`}>
+                <Link className="page-link" to="#" onClick={handlenextPage}>
+                  <i className="mdi mdi-chevron-right"></i>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </Row>

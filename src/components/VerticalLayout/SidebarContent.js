@@ -218,6 +218,43 @@ const SidebarContent = () => {
                 </li>
               </ul>
             </li>
+            <li>
+              <Link to="/#" className="has-arrow ">
+                <i className="bx bx-receipt"></i>
+                <span>Сургалт</span>
+              </Link>
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/lessons">Сургалт</Link>
+                </li>
+                <li>
+                  <Link to="/lesson-detail/:id">Сургалт дэлгэрэнгүй</Link>
+                </li>
+                <li>
+                  <Link to="/create-lesson">Сургалт нэмэх</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/#" className="has-arrow ">
+                <i className="bx bx-receipt"></i>
+                <span>Өгүүллэг</span>
+              </Link>
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/network-grid">Хэлэлцүүлэг хос</Link>
+                </li>
+                <li>
+                  <Link to="/network-list">Хэлэлцүүлэг жагсаалт</Link>
+                </li>
+                <li>
+                  <Link to="/post-detail/:id">Хэлэлцүүлэг дэлгэрэнгүй</Link>
+                </li>
+                <li>
+                  <Link to="/network-add">Хэлэлцүүлэг нэмэх</Link>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </SimpleBar>

@@ -409,7 +409,7 @@ const Article = () => {
                 isShowingPageLength={false}
                 paginationDiv="col-12"
                 paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                count={data.pagination.total}
+                count={data.pagination}
               />
             )}
           </Row>

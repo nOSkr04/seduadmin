@@ -20,6 +20,9 @@ import CreateBanner from "pages/Banner/create-ads"
 import PostGrid from "pages/Network/PostGrid/index"
 import PostList from "pages/Network/PostList/index"
 import PostDetails from "pages/Network/PostDetails"
+import LessonGrid from "pages/lesson/LessonGrid/index"
+import LessonDetail from "pages/lesson/LessonDetail"
+import CreateLesson from "pages/lesson/LessonGrid/create-lesson"
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   // article
@@ -36,6 +39,10 @@ const authProtectedRoutes = [
   { path: "/network-grid", component: <PostGrid /> },
   { path: "/network-list", component: <PostList /> },
   { path: "/post-detail/:id", component: <PostDetails /> },
+  // Lesson
+  { path: "/lessons", component: <LessonGrid /> },
+  { path: "/lesson-detail/:id", component: <LessonDetail /> },
+  { path: "/create-lesson", component: <CreateLesson /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

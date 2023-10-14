@@ -5,19 +5,20 @@ import { Container, Row } from "reactstrap"
 import Breadcrumbs from "../../../components/Common/Breadcrumb"
 
 import BlogList from "./PostList"
-import RightBar from "./RightBar"
 
 const Index = () => {
   //meta title
-  document.title = "Blog List | Skote - React Admin & Dashboard Template"
+  document.title = "Хэлэлцүүлэг"
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Blog" breadcrumbItem="Blog List" />
+          <Breadcrumbs
+            title="Хэлэлцүүлэг"
+            breadcrumbItem="Хэлэлцүүлэг жагсаалт"
+          />
           <Row>
             <BlogList />
-            <RightBar />
           </Row>
         </Container>
       </div>

@@ -1,7 +1,7 @@
 import { del, get, post, put } from "helpers/api_helper"
 
-export const getPosts = async () => {
-  const res = await get(`/posts`)
+export const getPosts = async ({ page, limit }) => {
+  const res = await get(`/posts?page=${page}&limit=${limit}&sort=-createdAt`)
   return res
 }
 export const getPost = async id => {
