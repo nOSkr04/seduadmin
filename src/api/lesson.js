@@ -1,4 +1,4 @@
-import { del, get, post, put } from "helpers/api_helper"
+import { customPost, del, get, post, put } from "helpers/api_helper"
 
 export const getLessons = async ({ page, limit }) => {
   const res = await get(`/lessons?page=${page}&limit=${limit}&sort=-createdAt`)
@@ -22,6 +22,23 @@ export const createLesson = async data => {
 export const editLesson = async Lesson => {
   const res = put(`/lessons/${ad.id}`, {
     name: Lesson.name,
+  })
+  return res
+}
+
+export const videoUpload = async data => {
+  console.log(data, "a")
+  const res = customPost("https://seduback.com/media/video", data, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Set content type for FormData
+    },
+    onUploadProgress: progressEvent => {
+      if (progressEvent.lengthComputable) {
+        const percentComplete =
+          (progressEvent.loaded / progressEvent.total) * 100
+        console.log(`Upload progress: ${Math.round(percentComplete)}%`)
+      }
+    },
   })
   return res
 }

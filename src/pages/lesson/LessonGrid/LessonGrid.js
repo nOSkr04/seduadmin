@@ -100,9 +100,7 @@ const LessonGrid = () => {
 
                               <div className="position-relative">
                                 <img
-                                  src={
-                                    "https://sedu-ba.s3.ap-southeast-1.amazonaws.com/4661a367-ee08-4cc6-a175-a849bf7bed67.jpg"
-                                  }
+                                  src={post.photo}
                                   alt=""
                                   className="img-thumbnail"
                                 />

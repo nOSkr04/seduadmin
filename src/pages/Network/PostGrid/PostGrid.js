@@ -129,11 +129,7 @@ const PostGrid = () => {
 
                               <div className="position-relative">
                                 <img
-                                  src={
-                                    post.photo
-                                      ? `https://seduback.com/upload/${post.photo}`
-                                      : img1
-                                  }
+                                  src={post.photo ? post.photo : img1}
                                   alt=""
                                   className="img-thumbnail"
                                 />

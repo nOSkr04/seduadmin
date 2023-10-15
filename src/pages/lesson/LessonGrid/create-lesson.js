@@ -16,10 +16,15 @@ import {
 import { Controller, useForm } from "react-hook-form"
 import Dropzone from "react-dropzone"
 import { Link } from "react-router-dom"
-import { LessonApi } from "api"
+import { videoUpload } from "api/lesson"
+// import { LessonApi } from "api"
 
 const CreateLesson = () => {
-  const { control, handleSubmit, reset } = useForm()
+  const {
+    control,
+    handleSubmit,
+    // reset
+  } = useForm()
 
   //meta title
   document.title = "Нийтлэл үүсгэх"
@@ -48,17 +53,29 @@ const CreateLesson = () => {
   }
 
   const onSubmit = async data => {
-    const create = {
-      name: data.name,
-      category: "5e90434cd433fa11b078ed8a",
-      description: data.description,
-    }
+    // file.append("file", {
+    //   uri: video
+    // })
+
+    // const create = {
+    //   name: data.name,
+    //   category: "5e90434cd433fa11b078ed8a",
+    //   description: data.description,
+    // }
+    console.log(data)
     try {
-      await LessonApi.createLesson(create)
-      reset({
-        name: "",
-        description: "",
-      })
+      const file = selectedFiles[0]
+      const formData = new FormData()
+      formData.append("file", file)
+
+      const backVideo = await videoUpload(file)
+
+      console.log(backVideo)
+      // await LessonApi.createLesson(create)
+      // reset({
+      //   name: "",
+      //   description: "",
+      // })
     } catch (err) {
       console.log(err, "err")
     }

@@ -123,11 +123,7 @@ const PostList = () => {
 
                               <div className="position-relative mb-3">
                                 <img
-                                  src={
-                                    post.photo
-                                      ? `https://seduback.com/upload/${post.photo}`
-                                      : img1
-                                  }
+                                  src={post.photo ? post.photo : img1}
                                   alt=""
                                   className="img-thumbnail"
                                 />

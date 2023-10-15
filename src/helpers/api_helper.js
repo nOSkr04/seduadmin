@@ -29,6 +29,12 @@ export async function post(url, data, config = {}) {
     .then(response => response.data)
 }
 
+export async function customPost(url, data, config = {}) {
+  return axiosApi
+    .post(url, { ...data }, { ...config })
+    .then(response => response.data)
+}
+
 export async function put(url, data, config = {}) {
   return axiosApi
     .put(`${API_URL}${url}`, { ...data }, { ...config })
@@ -43,8 +49,8 @@ export async function del(url, config = {}) {
 
 export async function putFile(url, data, config = {}) {
   return axiosApi
-    .put(
-      `${API_URL}${url}`,
+    .post(
+      `https://seduback.com/media${url}`,
       { ...data },
       {
         ...config,
