@@ -158,7 +158,7 @@ const SidebarContent = () => {
 
             <li>
               <Link to="/#" className="has-arrow">
-                <i className="bx bx-store"></i>
+                <i className="bx bx-receipt"></i>
                 <span>Нийтлэл</span>
               </Link>
               <ul className="sub-menu">
@@ -173,7 +173,7 @@ const SidebarContent = () => {
 
             <li>
               <Link to="/#" className="has-arrow ">
-                <i className="bx bx-bitcoin"></i>
+                <i className="bx bx-user"></i>
                 <span>Хэрэглэгч</span>
               </Link>
               <ul className="sub-menu">
@@ -185,22 +185,22 @@ const SidebarContent = () => {
 
             <li>
               <Link to="/#" className="has-arrow ">
-                <i className="bx bx-envelope"></i>
+                <i className="bx bxs-photo-album"></i>
                 <span>Зарууд</span>
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/ads">Зарууд жагсаалт</Link>
+                  <Link to="/ads">Баннэр</Link>
                 </li>
                 <li>
-                  <Link to="/ads-add">Зар нэмэх </Link>
+                  <Link to="/ads-add">Баннэр нэмэх </Link>
                 </li>
               </ul>
             </li>
 
             <li>
               <Link to="/#" className="has-arrow ">
-                <i className="bx bx-receipt"></i>
+                <i className="bx bx-world"></i>
                 <span>Хэлэлцүүлэг</span>
               </Link>
               <ul className="sub-menu">
@@ -220,15 +220,12 @@ const SidebarContent = () => {
             </li>
             <li>
               <Link to="/#" className="has-arrow ">
-                <i className="bx bx-receipt"></i>
+                <i className="bx bx-book-content"></i>
                 <span>Сургалт</span>
               </Link>
               <ul className="sub-menu">
                 <li>
                   <Link to="/lessons">Сургалт</Link>
-                </li>
-                <li>
-                  <Link to="/lesson-detail/:id">Сургалт дэлгэрэнгүй</Link>
                 </li>
                 <li>
                   <Link to="/create-lesson">Сургалт нэмэх</Link>
@@ -237,7 +234,7 @@ const SidebarContent = () => {
             </li>
             <li>
               <Link to="/#" className="has-arrow ">
-                <i className="bx bx-receipt"></i>
+                <i className="bx bx-video-recording"></i>
                 <span>Өгүүллэг</span>
               </Link>
               <ul className="sub-menu">

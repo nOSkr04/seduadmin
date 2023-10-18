@@ -216,16 +216,13 @@ const Article = () => {
                               </td>
                               <td>
                                 <h5 className="text-truncate font-size-14">
-                                  <Link
-                                    to={`/projects-overview/${article.id}`}
-                                    className="text-dark"
-                                  >
+                                  <Link to={"#"} className="text-dark">
                                     {article.name}
                                   </Link>
                                 </h5>
                               </td>
                               <td> {handleValidDate(article.createdAt)}</td>
-                              <td>{article.count}</td>
+                              <td>{article.seen}</td>
 
                               <td>
                                 <UncontrolledDropdown>
