@@ -23,6 +23,8 @@ import PostDetails from "pages/Network/PostDetails"
 import LessonGrid from "pages/lesson/LessonGrid/index"
 import LessonDetail from "pages/lesson/LessonDetail"
 import CreateLesson from "pages/lesson/LessonGrid/create-lesson"
+import StroyGrid from "pages/story/StoryGrid/StroyGrid"
+import CreateStory from "pages/story/StoryGrid/create-story"
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
   // article
@@ -43,6 +45,9 @@ const authProtectedRoutes = [
   { path: "/lessons", component: <LessonGrid /> },
   { path: "/lesson-detail/:id", component: <LessonDetail /> },
   { path: "/create-lesson", component: <CreateLesson /> },
+  // Story
+  { path: "/storys", component: <StroyGrid /> },
+  { path: "/story-add", component: <CreateStory /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

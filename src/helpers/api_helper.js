@@ -30,9 +30,7 @@ export async function post(url, data, config = {}) {
 }
 
 export async function customPost(url, data, config = {}) {
-  return axiosApi
-    .post(url, { ...data }, { ...config })
-    .then(response => response.data)
+  return axiosApi.post(url, data, { ...config }).then(response => response.data)
 }
 
 export async function put(url, data, config = {}) {

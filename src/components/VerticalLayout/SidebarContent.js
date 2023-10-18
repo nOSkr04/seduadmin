@@ -242,16 +242,11 @@ const SidebarContent = () => {
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/network-grid">Хэлэлцүүлэг хос</Link>
+                  <Link to="/storys">Өгүүллэг</Link>
                 </li>
+
                 <li>
-                  <Link to="/network-list">Хэлэлцүүлэг жагсаалт</Link>
-                </li>
-                <li>
-                  <Link to="/post-detail/:id">Хэлэлцүүлэг дэлгэрэнгүй</Link>
-                </li>
-                <li>
-                  <Link to="/network-add">Хэлэлцүүлэг нэмэх</Link>
+                  <Link to="/story-add">Өгүүллэг нэмэх</Link>
                 </li>
               </ul>
             </li>

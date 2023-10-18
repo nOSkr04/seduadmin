@@ -17,11 +17,11 @@ import { Controller, useForm } from "react-hook-form"
 import Dropzone from "react-dropzone"
 import { Link } from "react-router-dom"
 import { videoUpload } from "api/lesson"
-import { LessonApi } from "api"
+import { StoryApi } from "api"
 
 // import { LessonApi } from "api"
 
-const CreateLesson = () => {
+const CreateStory = () => {
   const [loading, setLoading] = useState(false)
   const { control, handleSubmit, reset } = useForm()
 
@@ -64,7 +64,7 @@ const CreateLesson = () => {
         duration: backVideo.duration,
         photo: backVideo.image,
       }
-      const res = await LessonApi.createLesson(core)
+      const res = await StoryApi.createStory(core)
       console.log(res)
       reset({
         name: "",
@@ -205,4 +205,4 @@ const CreateLesson = () => {
   )
 }
 
-export default CreateLesson
+export default CreateStory

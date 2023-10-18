@@ -27,18 +27,6 @@ export const editLesson = async Lesson => {
 }
 
 export const videoUpload = async data => {
-  console.log(data, "a")
-  const res = customPost("https://seduback.com/media/video", data, {
-    headers: {
-      "Content-Type": "multipart/form-data", // Set content type for FormData
-    },
-    onUploadProgress: progressEvent => {
-      if (progressEvent.lengthComputable) {
-        const percentComplete =
-          (progressEvent.loaded / progressEvent.total) * 100
-        console.log(`Upload progress: ${Math.round(percentComplete)}%`)
-      }
-    },
-  })
+  const res = customPost("https://seduback.com/media/video", data)
   return res
 }

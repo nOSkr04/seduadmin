@@ -43,7 +43,7 @@ const LessonDetail = () => {
                         <div className="col-xl-8">
                           <div>
                             <div className="text-center">
-                              <h4>{data.data.title}</h4>
+                              <h4>{data?.data.title}</h4>
                               <p className="text-muted mb-4">
                                 <i className="mdi mdi-calendar me-1"></i>{" "}
                                 {moment(data.createdAt).format("YYYY-MM-DD")}
@@ -53,7 +53,7 @@ const LessonDetail = () => {
                               <iframe
                                 title="test"
                                 className="embed-responsive-item"
-                                src="https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+                                src={data?.data?.url}
                               />
                             </div>
                             <hr />

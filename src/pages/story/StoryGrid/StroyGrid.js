@@ -3,21 +3,21 @@ import { Card, Col, Row } from "reactstrap"
 // import img1 from "../../../assets/images/small/img-2.jpg"
 import { Link } from "react-router-dom"
 import useSWR from "swr"
-import { LessonApi } from "api"
+import { StoryApi } from "api"
 import Spinners from "components/Common/Spinner"
 import moment from "moment/moment"
 import Paginations from "components/Common/Pagination"
 import DeleteModal from "components/Common/DeleteModal"
 
-const LessonGrid = () => {
+const StroyGrid = () => {
   const [pageIndex, setPageIndex] = useState(1)
   const [deleteModal, setDeleteModal] = useState(false)
   const [deleteId, setDeleteId] = useState("")
 
   const { isLoading, data, mutate } = useSWR(
-    `swr.lesson.${pageIndex}`,
+    `swr.story.${pageIndex}`,
     async () => {
-      const res = await LessonApi.getLessons({ page: pageIndex, limit: 10 })
+      const res = await StoryApi.getStorys({ page: pageIndex, limit: 10 })
       return res
     }
   )
@@ -29,7 +29,7 @@ const LessonGrid = () => {
 
   const onClickDelete = async () => {
     try {
-      await LessonApi.deleteLesson(deleteId)
+      await StoryApi.deleteStory(deleteId)
       setTimeout(() => {
         mutate()
       }, 500)
@@ -152,4 +152,4 @@ const LessonGrid = () => {
     </React.Fragment>
   )
 }
-export default LessonGrid
+export default StroyGrid
